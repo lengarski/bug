@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter
+              xmlns="https://github.com/spotbugs/filter/3.0.0"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/3.1.0_RC6/spotbugs/etc/findbugsfilter.xsd">
+
+  <Match>
+    <Bug code="Nm,SnVI,Dm,ICAST,IMC"/>
+  </Match>
+  <Match><Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS"/></Match>
+  <Match><Bug pattern="EI_EXPOSE_REP"/></Match>
+  <Match><Bug pattern="EI_EXPOSE_REP2"/></Match>
+  <Match><Bug pattern="ICAST_INT_CAST_TO_FLOAT_PASSED_TO_ROUND"/></Match>
+  <Match><Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON"/></Match>
+  <Match><Bug pattern="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD"/></Match>
+  <Match><Bug pattern="UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD"/></Match>
+  <!-- ignore   MRC_METHOD_RETURNS_CONSTANT - the methods will be used at some point latter to construct the query based on customer tags-->
+  <Match><Bug pattern="MRC_METHOD_RETURNS_CONSTANT"></Bug></Match>
+  <Match><Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/></Match>
+  <!-- to remove FCBL_FIELD_COULD_BE_LOCAL it is not critical, but good have  -->
+  <Match><Bug pattern="DLC_DUBIOUS_LIST_COLLECTION"/></Match>
+  <Match><Bug pattern="PSC_PRESIZE_COLLECTIONS"/></Match>
+  <Match><Bug pattern="SACM_STATIC_ARRAY_CREATED_IN_METHOD"/></Match>
+  <Match><Bug pattern="BL_BURYING_LOGIC"/></Match>
+  <Match><Bug pattern="CBX_CUSTOM_BUILT_XML"/></Match>
+  <Match><Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/></Match>
+  <Match><Bug pattern="IMC_IMMATURE_CLASS_NO_TOSTRING"/></Match>
+  <Match><Bug pattern="DRE_DECLARED_RUNTIME_EXCEPTION"/></Match>
+  <!-- PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS is low priority for the moment -->
+  <Match><Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/></Match>
+  <!-- not relevant -->
+  <Match><Bug pattern="IMC_IMMATURE_CLASS_UPPER_PACKAGE"/></Match>
+  <!-- ignore COM_PARENT_DELEGATED_CALL as not important -->
+  <Match><Bug pattern="COM_PARENT_DELEGATED_CALL"></Bug></Match>
+  <!-- ignore EXS_EXCEPTION_SOFTENING_NO_CHECKED as not relevant for spring architecture-->
+  <Match><Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CHECKED"></Bug></Match>
+  <!-- ignore EXS_EXCEPTION_SOFTENING_RETURN_FALSE as not relevant-->
+  <Match><Bug pattern="EXS_EXCEPTION_SOFTENING_RETURN_FALSE"></Bug></Match>
+  <!-- ignore EXS_EXCEPTION_SOFTENING_HAS_CHECKED as not relevant-->
+  <Match><Bug pattern="EXS_EXCEPTION_SOFTENING_HAS_CHECKED"></Bug></Match>
+  <!-- ignore  ITC_INHERITANCE_TYPE_CHECKING as not relevant-->
+  <Match><Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"></Bug></Match>
+  <Match><Bug pattern="OPM_OVERLY_PERMISSIVE_METHOD"></Bug></Match>
+  <!-- ignore CC_CYCLOMATIC_COMPLEXITY for now as requiring some code reorganisation relevant -->
+  <Match><Bug pattern="CC_CYCLOMATIC_COMPLEXITY"></Bug></Match>
+  <!-- ignore   USBR_UNNECESSARY_STORE_BEFORE_RETURN as not important-->
+  <Match><Bug pattern="USBR_UNNECESSARY_STORE_BEFORE_RETURN"></Bug></Match>
+  <!-- ignore   UVA_USE_VAR_ARGS as not important-->
+  <Match><Bug pattern="UVA_USE_VAR_ARGS"></Bug></Match>
+  <!-- ignore   WEM_WEAK_EXCEPTION_MESSAGING as not relevant-->
+  <Match><Bug pattern="WEM_WEAK_EXCEPTION_MESSAGING"></Bug></Match>
+  <!-- ignore   AI_ANNOTATION_ISSUES_NEEDS_NULLABLE as not relevant-->
+  <Match><Bug pattern="AI_ANNOTATION_ISSUES_NEEDS_NULLABLE"></Bug></Match>
+
+  <!--remove this after fix problems with MapSqlParameterSource -->
+  <!--
+  <Match><Bug pattern="NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS"/></Match>
+  <Match><Bug pattern="NP_NULL_PARAM_DEREF"/></Match>
+  <Match><Bug pattern="NP_NULL_PARAM_DEREF_NONVIRTUAL"/></Match>
+  <Match><Bug pattern="DLS_DEAD_LOCAL_STORE"/></Match>
+  <Match><Bug pattern="NP_NONNULL_PARAM_VIOLATION"/></Match>
+-->
+</FindBugsFilter>
