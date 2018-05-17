@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>bugs</groupId>
+    <artifactId>bug</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </parent>
+
+
+    <profiles>
+        <profile>
+            <!-- execution mappings for findbugs checks -->
+            <id>checks</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs</artifactId>
+                    <version>3.1.3</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.mebigfatguy.fb-contrib</groupId>
+                    <artifactId>fb-contrib</artifactId>
+                    <version>7.2.1.sb</version>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>depenency-as-properties</id>
+                                <goals>
+                                    <goal>properties</goal>
+                                </goals>
+                                <phase>process-resources</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>findbugs</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>compile</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <executable>java</executable>
+                            <commandlineArgs>-classpath %classpath edu.umd.cs.findbugs.LaunchAppropriateUI -textui
+                                -pluginList ${com.mebigfatguy.fb-contrib:fb-contrib:jar} -effort:max -experimental -html
+                                -exitcode -projectName v9_be -exclude ${project.basedir}/etc/build/fb_exclude.xml
+                                -output ${project.build.directory}/findbugs.html -auxclasspath %classpath
+                                ${project.build.outputDirectory}
+                            </commandlineArgs>
+                            <classpathScope>compile</classpathScope>
+                            <detail>true</detail>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.0.0.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <version>2.0.0.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.0.3.RELEASE</version>
+        </dependency>
+
+
+    </dependencies>
+</project>
